@@ -49,6 +49,13 @@
       border-radius: 10px;
       cursor: move;
     }
+    .row-images img:hover, #upload-pool img:hover {
+      outline: 3px solid #00f0ff;
+    }
+    .row-images img.delete, #upload-pool img.delete {
+      opacity: 0.3;
+      outline: 2px solid red;
+    }
     #tier-list { padding: 20px; }
     .tier-row {
       display: flex;
@@ -57,9 +64,7 @@
       overflow: hidden;
       border: 2px dashed transparent;
     }
-    .tier-row.drag-over {
-      border-color: #00f0ff;
-    }
+    .tier-row.drag-over { border-color: #00f0ff; }
     .row-label {
       width: 140px;
       padding: 10px;
