@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Tier List</title>
+ <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="controls">
+    <button onclick="showAddRowForm()">Добавить ряд</button>
+    <button onclick="toggleTheme()">Сменить тему</button>
+    <input type="file" id="image-upload" multiple onchange="handleFileUpload(event)">
+  </div>
+  <div id="new-row-form">
+    <label>Название: <input type="text" id="new-row-name" placeholder="Например, S"></label>
+    <label>Цвет: <input type="color" id="new-row-color" value="#ff0000"></label>
+    <button onclick="confirmAddRow()">Добавить</button>
+    <button onclick="cancelAddRow()">Отмена</button>
+  </div>
+  <div id="upload-pool-container">
+    <h3>Загруженные изображения</h3>
+    <div id="upload-pool" class="row-images" ondragover="event.preventDefault()" ondrop="handleDrop(event, this)"></div>
+  </div>
+  <div id="tier-list"></div>
+<script src="./script.js"></script>
+
+</body>
+</html>
