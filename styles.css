@@ -1,4 +1,5 @@
- * { box-sizing: border-box; }
+   /* Стили без изменений */
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -51,10 +52,6 @@
     }
     .row-images img:hover, #upload-pool img:hover {
       outline: 3px solid #00f0ff;
-    }
-    .row-images img.delete, #upload-pool img.delete {
-      opacity: 0.3;
-      outline: 2px solid red;
     }
     #tier-list { padding: 20px; }
     .tier-row {

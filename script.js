@@ -1,4 +1,4 @@
- const tierList = document.getElementById('tier-list');
+  const tierList = document.getElementById('tier-list');
     let currentDragged = null;
     let currentDraggedRow = null;
 
@@ -18,28 +18,39 @@
 
       const row = document.createElement('div');
       row.className = 'tier-row';
-      row.draggable = true;
-
-      row.ondragstart = () => currentDraggedRow = row;
-      row.ondragover = (e) => {
-        e.preventDefault();
-        if (row !== currentDraggedRow) row.classList.add('drag-over');
-      };
-      row.ondragleave = () => row.classList.remove('drag-over');
-      row.ondrop = (e) => {
-        e.preventDefault();
-        row.classList.remove('drag-over');
-        if (row !== currentDraggedRow) {
-          tierList.insertBefore(currentDraggedRow, row.nextSibling);
-        }
-        currentDraggedRow = null;
-      };
 
       const label = document.createElement('div');
       label.className = 'row-label';
       label.contentEditable = true;
       label.innerText = name;
       label.style.background = color;
+
+      // Только label можно перетаскивать
+      label.draggable = true;
+      label.ondragstart = () => currentDraggedRow = row;
+
+      row.ondragover = e => {
+        e.preventDefault();
+        if (currentDraggedRow && row !== currentDraggedRow) {
+          row.classList.add('drag-over');
+        }
+      };
+      row.ondragleave = () => row.classList.remove('drag-over');
+      row.ondrop = e => {
+        e.preventDefault();
+        row.classList.remove('drag-over');
+        if (currentDraggedRow && row !== currentDraggedRow) {
+          const rows = Array.from(tierList.children);
+          const fromIndex = rows.indexOf(currentDraggedRow);
+          const toIndex = rows.indexOf(row);
+          if (fromIndex < toIndex) {
+            tierList.insertBefore(currentDraggedRow, row.nextSibling);
+          } else {
+            tierList.insertBefore(currentDraggedRow, row);
+          }
+        }
+        currentDraggedRow = null;
+      };
 
       const colorPicker = document.createElement('input');
       colorPicker.type = 'color';
